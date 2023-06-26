@@ -1,0 +1,92 @@
+
+Stacks and Queues are limited data structures.
+	focused on efficient -> add and remove operations
+
+
+* QUEUE (FIFO)
+
+
+A queue is a line.
+Get on the line.
+Go to the back of the line (Enqueue)
+You are first in line
+You are next to be served
+NEXT(dequeue)
+
+
+You enqueue onto the back of the line.
+you dequeue from the front of the line
+
+	front<-------------------------------------<back
+
+
+Implement with linked list/single or double
+
+function->
+	enqueue() get on line
+	dequeue() get off line
+	peek() look at next in line
+	isEmpty() 
+
+
+* STACK (LIFO)
+ie: call stack
+
+a stack of plates
+a stack of papers
+throw it on the stack
+take it off the stack
+added to the top and removed from the top
+newer items on top
+
+function->
+	push()
+	pop()
+	peek()
+	isEmpty()
+
+implementation
+array -> push and pop already built in.
+linked list=> push and pop happen at the head.
+doubley linked list=> push and pop can happen at the tail or the head
+
+* DEQUES (double ended queue)
+  you can get on the line.
+  but you decide to leave so you get off the line
+
+  you were online and need to get serviced so
+  they told you to come to the front of the line. 
+  
+  push and pop to beginning or end
+
+  we can add and remove at the end
+  we can add and remove at the beginning
+
+  functions no standard names
+
+	insert front
+	remove front
+	insert end
+	remove end
+
+implementations
+	doubly linked list
+
+
+  
+
+* PRIORITY QUEUE
+
+tasks have priority
+people have priority.
+
+
+
+functions
+	add
+	poll
+	peek
+	isEmpty
+
+implementation
+	tree?
