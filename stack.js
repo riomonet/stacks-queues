@@ -1,4 +1,4 @@
-class Stack {
+class Stacker {
 
     constructor() {
 	this.arr = [];
@@ -13,6 +13,6 @@ class Stack {
     isEmpty() {	return (this.arr.length == 0)	}
 }
 
-module.exports ={ Stack }
+module.exports ={ Stacker }
 
 
