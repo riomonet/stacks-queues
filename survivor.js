@@ -58,7 +58,7 @@ function printList(list) {
     console.log(arr)
 }
 
-let survivor = findSurvivor(10,3);
+let survivor = findSurvivor(14,2);
 console.log(survivor)
 
 
