@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-class Queue {
+class LinkedList {
 
     constructor() {
 	this.head = null;
@@ -15,68 +15,106 @@ class Queue {
 	this.length = 0;
     }
 
-   enqueue (value) {
+    insertAfter(dest, value) {
 
-	let node = new Node;
-	node.value = value;
-       
-       /* state 0:  length == 0 */
-       if (this.length == 0) {
-	    this.head = node;
+	if (this.length == 0)
+	    return this.insertFirst(value);
+
+	let node = new Node(value);
+	node.next = dest.next;
+
+	if (dest.next != null)
+	    dest.next.prev = node;
+
+	dest.next = node;
+	node.prev = dest;
+
+	if (dest == this.tail)
 	    this.tail = node;
+	this.length++;
+    }
+
+    insertBefore(dest,value){
+
+	if (this.length == 0)
+	    return this.insertFirst(value);
+
+	let node = new Node(value);
+
+	node.prev = dest.prev;
+	
+
+	if (dest.prev != null)
+	    dest.prev.next = node;
+
+	dest.prev = node;
+
+	node.next = dest;
+
+	if (dest == this.head)
+	    this.head = node;
+	this.length++;
+    }
+
+    insertFirst(value) {
+	let node = new Node(value);
+	this.head = node;
+	this.tail = node;
+	this.length++;
+    }
+    
+    remove(node) {
+	
+	if(this.length == 1)
+	    return this.removeFinal();
+
+	if(node == this.head)
+	    return this.removeAtHead();
+
+	if(node == this.tail)
+	    return this.removeAtTail();
+
+	return this.splice(node);
+    }
+
+    splice(node) {
+	node.prev.next = node.next
+	node.next.prev = node.prev;
+	this.length--;
+    }
+
+    removeFinal() {
+	this.head = null;
+	this.tail = null;
+	this.length--;
+    }
+
+    removeAtTail() {
+	this.tail = this.tail.prev;
+	this.tail.next = null;
+	this.length--;
+    }
+
+    removeAtHead() {
+	this.head = this.head.next
+	this.head.prev = null;
+	this.length--;
+    }
+
+    findNode(value) {
+
+	let cur = this.head;
+	while(cur.next != null) {
+	    if (cur.value == value)
+		return cur;
+	    else cur = cur.next;
 	}
-
-       /* state 1: length == 1 */
-       else if (this.length == 1)   {
-	   this.head.next = node;
-	   this.tail = node;
-	   node.prev = this.head;
-	   
-       }
-       	/* state 2.length > 1 */
-       else {
-	   node.prev = this.tail;
-	   this.tail  = node;
-       }
-       this.length++;
-   }
-
-    dequeue() {
-	let node;
-	/* state 0: lenght == 0 */
-	if (this.length == 0){
-	    node = null;
-
-	} else if (this.length == 1) {	/* state 1: length == 1 */
-	    node = this.head;
- 	    this.tail = null;
-	    this.head = null;
-	    this.length--;
-
-	} else {    /* state 2.length >= 2  */
-	    node = this.head;
-	    this.head = this.head.next;
-	    node.next = null;
-	    this.length--;
-	    	    
-	}
-	return node;
     }
 }
-module.exports ={ Queue }
 
 
 
-q = new Queue()
-q.enqueue(10)
-q.enqueue(20)
-q.enqueue(30)
-console.log(q)	   
-
-
-
-
-
+module.exports ={ LinkedList }
 
 
 
